@@ -1,0 +1,17 @@
+from building import *
+
+cwd     = GetCurrentDir()
+src = Split('''
+modbus.c
+modbus-data.c
+''')
+
+
+src += Glob('modbus-rtu.c')
+src += Glob('modbus-tcp.c')
+
+CPPPATH = [cwd + '/../inc']
+
+group = DefineGroup('', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')
